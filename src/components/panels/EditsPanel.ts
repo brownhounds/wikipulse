@@ -66,6 +66,7 @@ export class EditsPanel extends Component {
         return html`
             <div class="title">
                 <span class="lbl">latest edits</span>
+                <span class="hint">${list.length} recent</span>
             </div>
             <div class="list">
                 ${repeat(list, EditsPanel.renderRow, (ev) => ev.id)}

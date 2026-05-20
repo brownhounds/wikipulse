@@ -2,6 +2,8 @@
 
 Live dashboard of every edit happening across Wikimedia in real time. Built as a reactivity showcase for [Elemix](https://github.com/neuralfog/elemix) — streams the public [Wikimedia recent-changes SSE firehose](https://stream.wikimedia.org/v2/stream/recentchange).
 
+**Live preview:** [wikipulse.gitgood.sh](https://wikipulse.gitgood.sh)
+
 ![demo](.readme/demo.gif)
 
 ## Stack

@@ -8,6 +8,7 @@ import css from '#src/components/layout/AppHeader.scss?inline';
 import '#src/components/controls/StreamToggle';
 import '#src/components/controls/ResetButton';
 import '#src/components/controls/SiteLink';
+import '#src/components/controls/GithubLink';
 import '#src/components/metrics/StatusMetric';
 import '#src/components/metrics/MetricItem';
 
@@ -24,6 +25,7 @@ export class AppHeader extends Component {
                     <stream-toggle></stream-toggle>
                     <reset-button></reset-button>
                     <site-link></site-link>
+                    <github-link></github-link>
                 </div>
                 <div class="metrics">
                     <status-metric></status-metric>
