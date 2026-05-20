@@ -1,0 +1,16 @@
+[Unit]
+Description=wikipulse dashboard
+After=docker.service network-online.target
+Requires=docker.service
+
+[Service]
+Type=oneshot
+ExecStartPre=-/usr/bin/docker rm -f wikipulse
+ExecStart=/usr/bin/docker run -d --name wikipulse --restart unless-stopped -p 8090:8090 wikipulse:latest
+ExecStop=/usr/bin/docker stop wikipulse
+ExecStopPost=-/usr/bin/docker rm -f wikipulse
+StandardOutput=syslog
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
