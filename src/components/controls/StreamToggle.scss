@@ -1,0 +1,42 @@
+:host {
+    display: inline-flex;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.375rem 0.875rem 0.375rem 0.75rem;
+    border-radius: var(--radius);
+    font-family: Inter, sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    cursor: pointer;
+    transition: all 160ms ease;
+    border: 0.0625rem solid transparent;
+    line-height: 1;
+}
+
+.btn.start {
+    background: var(--green-mid);
+    color: var(--green);
+    border-color: var(--green-edge);
+}
+
+.btn.start:hover {
+    background: var(--green-edge);
+    box-shadow: 0 0 0.75rem -0.125rem var(--green-edge);
+}
+
+.btn.stop {
+    background: var(--red-mid);
+    color: var(--red);
+    border-color: var(--red-edge);
+}
+
+.btn.stop:hover {
+    background: var(--red-edge);
+    box-shadow: 0 0 0.75rem -0.125rem var(--red-edge);
+}

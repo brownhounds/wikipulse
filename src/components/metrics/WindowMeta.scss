@@ -1,0 +1,14 @@
+:host {
+    display: inline-block;
+}
+
+.meta {
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+.dot {
+    color: var(--text-faint);
+    margin: 0 0.4rem;
+}

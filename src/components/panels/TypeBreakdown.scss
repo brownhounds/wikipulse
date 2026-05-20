@@ -1,0 +1,77 @@
+:host {
+    display: block;
+    background: var(--bg-panel);
+    border: 0.0625rem solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.title {
+    padding: 0.85rem 1.1rem;
+    border-bottom: 0.0625rem solid var(--border);
+    background: var(--bg-title);
+}
+
+.title .lbl {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.stack {
+    padding: 0.85rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.segmented {
+    display: flex;
+    height: 0.875rem;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--bg-track);
+}
+
+.segment {
+    height: 100%;
+    transition: width 580ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.legend {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(5.625rem, 1fr));
+    gap: 0.4rem 0.85rem;
+}
+
+.legend .item {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.72rem;
+    color: var(--text-secondary);
+}
+
+.swatch {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: var(--radius);
+    flex-shrink: 0;
+}
+
+.lbl {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    font-family: Inter, sans-serif;
+}
+
+.cnt {
+    margin-left: auto;
+    color: var(--text);
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-variant-numeric: tabular-nums;
+    font-weight: 500;
+}

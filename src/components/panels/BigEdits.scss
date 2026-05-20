@@ -1,0 +1,118 @@
+:host {
+    display: block;
+    background: var(--bg-panel);
+    border: 0.0625rem solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.title {
+    padding: 0.85rem 1.1rem;
+    border-bottom: 0.0625rem solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg-title);
+}
+
+.title .lbl {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.title .hint {
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+.list {
+    padding: 0.85rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+}
+
+.row {
+    background: var(--bg-row);
+    border: 0.0625rem solid var(--border-row);
+    border-radius: var(--radius);
+    padding: 0.65rem 0.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    animation: slideIn 360ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition: background 200ms ease, border-color 200ms ease;
+}
+
+.row:hover {
+    background: var(--bg-row-hover);
+    border-color: var(--border-strong);
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(-0.5rem) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.lang {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.1875rem 0.5rem;
+    border-radius: var(--radius);
+    letter-spacing: 0.04em;
+    min-width: 4rem;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.delta {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.95rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+.delta.pos { color: var(--green); }
+.delta.neg { color: var(--red); }
+
+.title-line a {
+    color: var(--text);
+    font-size: 0.88rem;
+    font-weight: 500;
+    text-decoration: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+}
+
+.title-line a:hover { color: var(--accent); }
+
+.foot {
+    display: flex;
+    justify-content: space-between;
+    color: var(--text-dim);
+    font-size: 0.68rem;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+.empty {
+    color: var(--text-faint);
+    text-align: center;
+    padding: 2rem 1rem;
+    font-size: 0.85rem;
+}

@@ -1,0 +1,29 @@
+:host {
+    display: block;
+    min-height: 100vh;
+    background: var(--bg-page);
+}
+
+.container {
+    max-width: 93.75rem;
+    margin: 0 auto;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 20rem 1fr 20rem;
+    gap: 1rem;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-width: 0;
+}
+
+@media (width <= 68.75rem) {
+    .grid { grid-template-columns: 1fr; }
+}

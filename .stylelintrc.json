@@ -1,0 +1,24 @@
+{
+    "extends": ["stylelint-config-standard-scss"],
+    "ignoreFiles": [
+        "node_modules/**/*",
+        "dist/**/*",
+        "_elemix_research/**/*",
+        "elemix-testing/**/*",
+        "perf/**/*"
+    ],
+    "rules": {
+        "no-descending-specificity": null,
+        "selector-class-pattern": null,
+        "scss/dollar-variable-pattern": null,
+        "scss/at-rule-no-unknown": null,
+        "keyframes-name-pattern": null,
+        "declaration-block-single-line-max-declarations": null,
+        "alpha-value-notation": "number",
+        "color-function-notation": "modern",
+        "color-hex-length": "long",
+        "shorthand-property-no-redundant-values": null,
+        "declaration-block-no-redundant-longhand-properties": null,
+        "media-feature-range-notation": "context"
+    }
+}

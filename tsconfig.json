@@ -1,0 +1,16 @@
+{
+    "extends": "@neuralfog/ts-config/index.json",
+    "include": ["."],
+    "exclude": [
+        "dist/**/*",
+        "node_modules",
+        "_elemix_research",
+        "elemix-testing",
+        "perf"
+    ],
+    "compilerOptions": {
+        "paths": {
+            "#src/*": ["./src/*"]
+        }
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "name": "dash",
+    "version": "0.1.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite --host",
+        "build": "vite build",
+        "preview": "vite preview",
+        "lint": "tsc --noEmit && biome format && biome lint && stylelint \"src/**/*.scss\"",
+        "lint:fix": "biome format --write . && biome lint --write . && stylelint \"src/**/*.scss\" --fix && tsc --noEmit",
+        "lint:css": "stylelint \"src/**/*.scss\"",
+        "lint:css:fix": "stylelint \"src/**/*.scss\" --fix"
+    },
+    "dependencies": {
+        "@neuralfog/biome-config": "0.1.2",
+        "@neuralfog/elemix": "0.1.8",
+        "@neuralfog/elemix-renderer": "0.1.8"
+    },
+    "devDependencies": {
+        "@neuralfog/ts-config": "0.1.1",
+        "esbuild": "0.28.0",
+        "sass-embedded": "1.85.1",
+        "stylelint": "17.11.1",
+        "stylelint-config-standard-scss": "17.0.0",
+        "typescript": "5.8.2",
+        "vite": "8.0.13"
+    }
+}
