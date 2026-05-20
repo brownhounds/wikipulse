@@ -15,9 +15,9 @@ export class StatusMetric extends Component {
 
     private get label(): string {
         const { streaming, connected } = streamStatus.value;
-        if (!streaming) return 'paused';
-        if (connected) return 'streaming';
-        return 'connecting…';
+        if (!streaming) return 'Paused';
+        if (connected) return 'Streaming';
+        return 'Connecting…';
     }
 
     template(): Template {

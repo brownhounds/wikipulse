@@ -15,49 +15,61 @@ const COLORS: Record<TypeKey, string> = {
     other: 'var(--slate)',
 };
 
-const ORDER: { key: TypeKey; label: string }[] = [
-    { key: 'edit', label: 'edit' },
-    { key: 'new', label: 'new' },
-    { key: 'log', label: 'log' },
-    { key: 'categorize', label: 'cat' },
-    { key: 'other', label: 'other' },
-];
-
 @component({ signals: [typeCounters], styles: [css] })
 export class TypeBreakdown extends Component {
     private get total(): number {
-        const { edit, new: editNew, log, categorize, other } = typeCounters.value;
-        return edit + editNew + log + categorize + other || 1;
+        const {
+            edit,
+            new: editNew,
+            log,
+            categorize,
+            other,
+        } = typeCounters.value;
+        return edit + editNew + log + categorize + other;
     }
 
-    private get segments(): Template[] {
-        return ORDER.map(({ key }) => {
-            const value = typeCounters.value[key];
-            const style = `width:${(value / this.total) * 100}%;background:${COLORS[key]}`;
-            return html`<div class="segment" style=${style}></div>`;
-        });
+    private segment(key: TypeKey): Template {
+        const value = typeCounters.value[key];
+        const denom = this.total || 1;
+        const style = `width:${(value / denom) * 100}%;background:${COLORS[key]}`;
+        return html`<div class="segment" style=${style}></div>`;
     }
 
-    private get legend(): Template[] {
-        return ORDER.map(({ key, label }) => {
-            const value = typeCounters.value[key];
-            const swatchStyle = `background:${COLORS[key]}`;
-            return html`<div class="item">
-                <span class="swatch" style=${swatchStyle}></span>
-                <span class="lbl">${label}</span>
-                <span class="cnt">${formatCompact(value)}</span>
-            </div>`;
-        });
+    private legendItem(key: TypeKey, label: string): Template {
+        const value = typeCounters.value[key];
+        const swatchStyle = `background:${COLORS[key]}`;
+        return html`<div class="item">
+            <span class="swatch" style=${swatchStyle}></span>
+            <span class="lbl">${label}</span>
+            <span class="cnt">${formatCompact(value)}</span>
+        </div>`;
     }
 
     template(): Template {
+        const empty = this.total === 0;
         return html`
             <div class="title">
                 <span class="lbl">event types</span>
             </div>
             <div class="stack">
-                <div class="segmented">${this.segments}</div>
-                <div class="legend">${this.legend}</div>
+                ${
+                    empty
+                        ? html`<div class="empty">Waiting for events…</div>`
+                        : html`<div class="segmented">
+                            ${this.segment('edit')}
+                            ${this.segment('new')}
+                            ${this.segment('log')}
+                            ${this.segment('categorize')}
+                            ${this.segment('other')}
+                        </div>
+                        <div class="legend">
+                            ${this.legendItem('edit', 'edit')}
+                            ${this.legendItem('new', 'new')}
+                            ${this.legendItem('log', 'log')}
+                            ${this.legendItem('categorize', 'cat')}
+                            ${this.legendItem('other', 'other')}
+                        </div>`
+                }
             </div>
         `;
     }

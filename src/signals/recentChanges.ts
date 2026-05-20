@@ -18,8 +18,6 @@ export type WikiChange = {
     comment: string;
 };
 
-export const MAX_FEED_ITEMS = 15;
-
 export const recentChanges = signal({
     list: [] as WikiChange[],
 });

@@ -2,31 +2,16 @@ import { Component, html, type Template } from '@neuralfog/elemix';
 import { component } from '@neuralfog/elemix/decorators';
 import { repeat } from '@neuralfog/elemix/directives';
 
-import {
-    languageStats,
-    type LanguageStat,
-} from '#src/signals/languageStats';
+import { languageStats, type LanguageStat } from '#src/signals/languageStats';
 import { langColor, langName } from '#src/utils/lang';
-import css from '#src/components/panels/LanguageRace.scss?inline';
+import css from '#src/components/panels/LanguagesPanel.scss?inline';
 
 import '#src/components/metrics/WindowMeta';
 
 @component({ signals: [languageStats], styles: [css] })
-export class LanguageRace extends Component {
+export class LanguagesPanel extends Component {
     private get max(): number {
         return languageStats.value.rows[0]?.count ?? 1;
-    }
-
-    private get body(): Template {
-        const { rows } = languageStats.value;
-        if (rows.length === 0) {
-            return html`<div class="empty">collecting…</div>`;
-        }
-        return html`${repeat(
-            rows,
-            (r, i) => this.renderRow(r, i),
-            (r) => r.lang,
-        )}`;
     }
 
     private renderRow(r: LanguageStat, i: number): Template {
@@ -45,13 +30,20 @@ export class LanguageRace extends Component {
     }
 
     template(): Template {
-        const { total, windowSec } = languageStats.value;
+        const { rows, total, windowSec } = languageStats.value;
         return html`
             <div class="title">
-                <span class="lbl">language race</span>
+                <span class="lbl">languages</span>
                 <window-meta :windowSec=${windowSec} :count=${total}></window-meta>
             </div>
-            <div class="list">${this.body}</div>
+            <div class="list">
+                ${repeat(
+                    rows,
+                    (r, i) => this.renderRow(r, i),
+                    (r) => r.lang,
+                )}
+                ${rows.length === 0 ? html`<div class="empty">Waiting for events…</div>` : html``}
+            </div>
         `;
     }
 }

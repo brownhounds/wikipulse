@@ -5,10 +5,10 @@ import { startStream } from '#src/sse/wiki';
 import css from '#src/components/layout/MainApp.scss?inline';
 
 import '#src/components/layout/AppHeader';
-import '#src/components/panels/EditFeed';
-import '#src/components/panels/LanguageRace';
+import '#src/components/panels/FeedPanel';
+import '#src/components/panels/LanguagesPanel';
 import '#src/components/panels/TypeBreakdown';
-import '#src/components/panels/BigEdits';
+import '#src/components/panels/EditsPanel';
 
 @component({ styles: [css] })
 export class MainApp extends Component {
@@ -18,18 +18,18 @@ export class MainApp extends Component {
 
     template(): Template {
         return html`
-            <app-header />
+            <app-header></app-header>
             <div class="container">
+                <type-breakdown></type-breakdown>
                 <div class="grid">
                     <div class="col">
-                        <language-race />
-                        <type-breakdown />
+                        <languages-panel></languages-panel>
                     </div>
                     <div class="col">
-                        <edit-feed />
+                        <feed-panel></feed-panel>
                     </div>
                     <div class="col">
-                        <big-edits />
+                        <edits-panel></edits-panel>
                     </div>
                 </div>
             </div>

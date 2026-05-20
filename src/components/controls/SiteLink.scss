@@ -1,0 +1,23 @@
+:host {
+    display: inline-flex;
+}
+
+.link {
+    display: inline-flex;
+    align-items: center;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--white);
+    transition: opacity 160ms ease;
+    line-height: 1;
+}
+
+.link:hover {
+    opacity: 0.8;
+}
+
+.tilde {
+    color: var(--brand-tilde);
+}

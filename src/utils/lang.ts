@@ -76,6 +76,7 @@ export const langName = (code: string): string => {
 };
 
 const hueFromCode = (code: string): number => {
+    if (!code) return 0;
     let h = 0;
     for (let i = 0; i < code.length; i++) {
         h = (h * 31 + code.charCodeAt(i)) >>> 0;

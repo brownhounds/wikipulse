@@ -30,7 +30,7 @@
 }
 
 .list {
-    padding: 0.85rem;
+    padding: 0.425rem;
     display: flex;
     flex-direction: column;
     gap: 0.55rem;
@@ -63,20 +63,6 @@
     justify-content: space-between;
     align-items: center;
     gap: 0.5rem;
-}
-
-.lang {
-    font-family: 'JetBrains Mono', ui-monospace, monospace;
-    font-size: 0.7rem;
-    font-weight: 700;
-    padding: 0.1875rem 0.5rem;
-    border-radius: var(--radius);
-    letter-spacing: 0.04em;
-    min-width: 4rem;
-    text-align: center;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 }
 
 .delta {

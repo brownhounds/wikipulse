@@ -6,6 +6,8 @@ import { formatCompact, formatNumber } from '#src/utils/format';
 import css from '#src/components/layout/AppHeader.scss?inline';
 
 import '#src/components/controls/StreamToggle';
+import '#src/components/controls/ResetButton';
+import '#src/components/controls/SiteLink';
 import '#src/components/metrics/StatusMetric';
 import '#src/components/metrics/MetricItem';
 
@@ -19,7 +21,9 @@ export class AppHeader extends Component {
             <header>
                 <div class="brand">
                     <div class="logo">wikipulse</div>
-                    <stream-toggle />
+                    <stream-toggle></stream-toggle>
+                    <reset-button></reset-button>
+                    <site-link></site-link>
                 </div>
                 <div class="metrics">
                     <status-metric></status-metric>

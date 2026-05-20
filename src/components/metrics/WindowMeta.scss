@@ -1,8 +1,14 @@
 :host {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    height: 1rem;
+    line-height: 1;
 }
 
 .meta {
+    display: inline-flex;
+    align-items: center;
+    height: 100%;
     font-size: 0.65rem;
     color: var(--text-dim);
     font-family: 'JetBrains Mono', ui-monospace, monospace;

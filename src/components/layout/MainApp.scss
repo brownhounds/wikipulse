@@ -9,12 +9,16 @@
     margin: 0 auto;
     padding: 1rem;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
 .grid {
     display: grid;
     grid-template-columns: 20rem 1fr 20rem;
     gap: 1rem;
+    align-items: start;
 }
 
 .col {

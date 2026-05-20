@@ -3,13 +3,15 @@ import { component } from '@neuralfog/elemix/decorators';
 import { repeat } from '@neuralfog/elemix/directives';
 
 import { recentChanges, type WikiChange } from '#src/signals/recentChanges';
-import { NOTABLE_DELTA_THRESHOLD } from '#src/signals/notableChanges';
-import { langColor, langColorSoft } from '#src/utils/lang';
+import { EDIT_DELTA_THRESHOLD } from '#src/config';
 import { formatSignedCompact } from '#src/utils/format';
-import css from '#src/components/panels/EditFeed.scss?inline';
+import css from '#src/components/panels/FeedPanel.scss?inline';
+
+import '#src/components/badges/LangPill';
+import '#src/components/badges/TypePill';
 
 const isNotable = (delta: number): boolean =>
-    Math.abs(delta) >= NOTABLE_DELTA_THRESHOLD;
+    Math.abs(delta) >= EDIT_DELTA_THRESHOLD;
 
 const rowClassFor = (ev: WikiChange): string =>
     `row${isNotable(ev.delta) ? ' big' : ''}${ev.bot ? ' bot-row' : ''}`;
@@ -20,28 +22,17 @@ const deltaClassFor = (delta: number): string => {
     return 'delta zero';
 };
 
-const langStyleFor = (lang: string): string =>
-    `color:${langColor(lang)};background:${langColorSoft(lang)}`;
-
-const typeClassFor = (type: string): string => `type ${type}`;
-
 @component({ signals: [recentChanges], styles: [css] })
-export class EditFeed extends Component {
+export class FeedPanel extends Component {
     private get list(): WikiChange[] {
         return recentChanges.value.list;
     }
 
-    private get body(): Template {
-        if (this.list.length === 0) {
-            return html`<div class="empty">waiting for events…</div>`;
-        }
-        return html`${repeat(this.list, EditFeed.renderRow, (ev) => ev.id)}`;
-    }
-
     private static renderRow(ev: WikiChange): Template {
-        const { type, title, titleUrl, user, bot, minor, anon, lang, delta } = ev;
+        const { type, title, titleUrl, user, bot, minor, anon, lang, delta } =
+            ev;
         return html`<div class=${rowClassFor(ev)}>
-            <span class="lang" style=${langStyleFor(lang)}>${lang}</span>
+            <lang-pill :lang=${lang}></lang-pill>
             <div class="body">
                 <div class="title-line">
                     <a href=${titleUrl} target="_blank" rel="noopener">
@@ -55,18 +46,22 @@ export class EditFeed extends Component {
                     ${user || '—'}
                 </div>
             </div>
-            <span class=${typeClassFor(type)}>${type}</span>
+            <type-pill :type=${type}></type-pill>
             <span class=${deltaClassFor(delta)}>${formatSignedCompact(delta)}</span>
         </div>`;
     }
 
     template(): Template {
+        const { list } = this;
         return html`
             <div class="title">
                 <span class="lbl">live feed</span>
-                <span class="hint">${this.list.length} recent</span>
+                <span class="hint">${list.length} recent</span>
             </div>
-            <div class="list">${this.body}</div>
+            <div class="list">
+                ${repeat(list, FeedPanel.renderRow, (ev) => ev.id)}
+                ${list.length === 0 ? html`<div class="empty">Waiting for events…</div>` : html``}
+            </div>
         `;
     }
 }

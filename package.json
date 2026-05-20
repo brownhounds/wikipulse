@@ -9,7 +9,12 @@
         "lint": "tsc --noEmit && biome format && biome lint && stylelint \"src/**/*.scss\"",
         "lint:fix": "biome format --write . && biome lint --write . && stylelint \"src/**/*.scss\" --fix && tsc --noEmit",
         "lint:css": "stylelint \"src/**/*.scss\"",
-        "lint:css:fix": "stylelint \"src/**/*.scss\" --fix"
+        "lint:css:fix": "stylelint \"src/**/*.scss\" --fix",
+        "storybook": "storybook dev -p 6006",
+        "build-storybook": "storybook build",
+        "test": "vitest run",
+        "test:watch": "vitest --watch",
+        "test:coverage": "vitest run --coverage"
     },
     "dependencies": {
         "@neuralfog/biome-config": "0.1.2",
@@ -17,12 +22,25 @@
         "@neuralfog/elemix-renderer": "0.1.8"
     },
     "devDependencies": {
+        "@chromatic-com/storybook": "5.0.0",
+        "@neuralfog/elemix-storybook": "0.0.1",
         "@neuralfog/ts-config": "0.1.1",
+        "@storybook/addon-a11y": "10.2.1",
+        "@storybook/addon-docs": "10.2.1",
+        "@storybook/addon-vitest": "10.2.1",
+        "@storybook/web-components-vite": "10.2.1",
+        "@types/node": "25.1.0",
+        "@vitest/browser-playwright": "4.0.18",
+        "@vitest/coverage-v8": "4.0.18",
         "esbuild": "0.28.0",
+        "jsdom": "^29.1.1",
+        "playwright": "1.58.0",
         "sass-embedded": "1.85.1",
+        "storybook": "10.2.1",
         "stylelint": "17.11.1",
         "stylelint-config-standard-scss": "17.0.0",
         "typescript": "5.8.2",
-        "vite": "8.0.13"
+        "vite": "8.0.13",
+        "vitest": "4.0.18"
     }
 }

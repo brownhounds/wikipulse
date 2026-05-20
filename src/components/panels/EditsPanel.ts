@@ -2,20 +2,19 @@ import { Component, html, type Template } from '@neuralfog/elemix';
 import { component, state } from '@neuralfog/elemix/decorators';
 import { repeat } from '@neuralfog/elemix/directives';
 
-import { notableChanges } from '#src/signals/notableChanges';
+import { edits } from '#src/signals/edits';
+
 import type { WikiChange } from '#src/signals/recentChanges';
-import { langColor, langColorSoft } from '#src/utils/lang';
 import { formatSignedCompact, formatAgo } from '#src/utils/format';
-import css from '#src/components/panels/BigEdits.scss?inline';
+import css from '#src/components/panels/EditsPanel.scss?inline';
+
+import '#src/components/badges/LangPill';
 
 const deltaClassFor = (delta: number): string =>
     `delta ${delta >= 0 ? 'pos' : 'neg'}`;
 
-const langStyleFor = (lang: string): string =>
-    `color:${langColor(lang)};background:${langColorSoft(lang)}`;
-
-@component({ signals: [notableChanges], styles: [css] })
-export class BigEdits extends Component {
+@component({ signals: [edits], styles: [css] })
+export class EditsPanel extends Component {
     @state()
     state = { now: Date.now() };
 
@@ -31,21 +30,14 @@ export class BigEdits extends Component {
     };
 
     private get list(): WikiChange[] {
-        return notableChanges.value.list;
-    }
-
-    private get body(): Template {
-        if (this.list.length === 0) {
-            return html`<div class="empty">no big edits yet…</div>`;
-        }
-        return html`${repeat(this.list, BigEdits.renderRow, (ev) => ev.id)}`;
+        return edits.value.list;
     }
 
     private static renderRow(ev: WikiChange): Template {
         const { lang, delta, title, titleUrl, user, timestamp } = ev;
         return html`<div class="row">
             <div class="head">
-                <span class="lang" style=${langStyleFor(lang)}>${lang}</span>
+                <lang-pill :lang=${lang}></lang-pill>
                 <span class=${deltaClassFor(delta)}>${formatSignedCompact(delta)}</span>
             </div>
             <div class="title-line">
@@ -70,11 +62,15 @@ export class BigEdits extends Component {
     }
 
     template(): Template {
+        const { list } = this;
         return html`
             <div class="title">
                 <span class="lbl">latest edits</span>
             </div>
-            <div class="list">${this.body}</div>
+            <div class="list">
+                ${repeat(list, EditsPanel.renderRow, (ev) => ev.id)}
+                ${list.length === 0 ? html`<div class="empty">Waiting for events…</div>` : html``}
+            </div>
         `;
     }
 }
