@@ -2,7 +2,7 @@ import { html } from '@neuralfog/elemix';
 import type { ElemixMeta, ElemixStory } from '@neuralfog/elemix-storybook';
 
 import { languageStats } from '#src/signals/languageStats';
-import '#src/components/panels/LanguagesPanel';
+import '#src/components/panels/WikisPanel';
 
 const SAMPLE = [
     { lang: 'commons', count: 412 },
@@ -22,7 +22,7 @@ const SAMPLE = [
 type Args = { rows: number; scale: number };
 
 const meta: ElemixMeta<Args> = {
-    title: 'Panels/LanguagesPanel',
+    title: 'Panels/WikisPanel',
     args: { rows: 8, scale: 1 },
     argTypes: {
         rows: { control: { type: 'number', min: 0, max: 12 } },
@@ -49,7 +49,7 @@ const meta: ElemixMeta<Args> = {
 };
 export default meta;
 
-const render = () => html`<languages-panel></languages-panel>`;
+const render = () => html`<wikis-panel></wikis-panel>`;
 
 export const Default: ElemixStory<Args> = {
     args: { rows: 8, scale: 1 },

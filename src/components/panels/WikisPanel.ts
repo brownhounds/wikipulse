@@ -4,12 +4,12 @@ import { repeat } from '@neuralfog/elemix/directives';
 
 import { languageStats, type LanguageStat } from '#src/signals/languageStats';
 import { langColor, langName } from '#src/utils/lang';
-import css from '#src/components/panels/LanguagesPanel.scss?inline';
+import css from '#src/components/panels/WikisPanel.scss?inline';
 
 import '#src/components/metrics/WindowMeta';
 
 @component({ signals: [languageStats], styles: [css] })
-export class LanguagesPanel extends Component {
+export class WikisPanel extends Component {
     private get max(): number {
         return languageStats.value.rows[0]?.count ?? 1;
     }
@@ -33,7 +33,7 @@ export class LanguagesPanel extends Component {
         const { rows, total, windowSec } = languageStats.value;
         return html`
             <div class="title">
-                <span class="lbl">languages</span>
+                <span class="lbl">wikis</span>
                 <window-meta :windowSec=${windowSec} :count=${total}></window-meta>
             </div>
             <div class="list">
